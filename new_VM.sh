@@ -122,23 +122,25 @@ fi
 
 
 ################################################################################
-# Display the command to the user so they can run it themselves
+# Display the command to the user so you can run it themselves
 ################################################################################
-echo ${hddallocation}
-echo ${ramallocation}
 
+echo "" # create some space
+echo "" # create some space
 echo virt-install \
     --name=${VM_name} \
     --arch=x86_64 \
     --vcpus=1 \
-    --ram=512 \
-    --os-type=linux \
-    --os-variant=debianwheezy \
+    --ram=${VM_RAM_allocation} \
+    --os-type=${VM_OS_type} \
+    --os-variant=${VM_variant} \
     --hvm \
     --connect=qemu:///system \
     --network bridge:br0 \
     --cdrom=/var/lib/libvirt/images/${VM_instalation_image} \
-    --disk path=/mnt/virtual_machines/${VM_name}.img,size=20 \
+    --disk path=/mnt/virtual_machines/${VM_name}.img,size=${VM_HDD_allocation} \
     --graphics vnc,keymap=en-us \
     --noautoconsole \
     --accelerate
+
+
